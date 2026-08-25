@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Struktur Desa Aleuti</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f7f4;
+    color:#222;
+}
+
+/* HEADER */
+
+header{
+    background:#087443;
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+header h1{
+    font-size:32px;
+}
+
+header p{
+    margin-top:8px;
+}
+
+/* CONTAINER */
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:30px auto;
+    text-align:center;
+}
+
+.judul{
+    color:#087443;
+    margin-bottom:25px;
+}
+
+/* KARTU */
+
+.kartu{
+    display:block;
+    width:100%;
+    max-width:300px;
+    margin:15px auto;
+    padding:22px 15px;
+
+    background:white;
+
+    border:none;
+    border-top:5px solid #087443;
+
+    border-radius:14px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+
+    cursor:pointer;
+
+    text-align:center;
+
+    font-family:Arial,sans-serif;
+
+    -webkit-tap-highlight-color:transparent;
+
+    transition:0.2s;
+}
+
+.kartu:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.20);
+}
+
+.kartu:active{
+    transform:scale(0.97);
+    background:#eaf6ef;
+}
+
+.icon{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.kartu h3{
+    color:#087443;
+    font-size:17px;
+}
+
+.kartu p{
+    margin-top:8px;
+    color:#666;
+}
+
+.klik{
+    display:block;
+    margin-top:10px;
+    color:#087443;
+    font-size:13px;
+}
+
+/* GARIS */
+
+.garis{
+    width:3px;
+    height:35px;
+    background:#087443;
+    margin:auto;
+}
+
+/* KELOMPOK */
+
+.kelompok,
+.dusun{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+/* DUSUN */
+
+.dusun .kartu{
+    border-top-color:#1684c7;
+}
+
+.dusun .kartu h3{
+    color:#1684c7;
+}
+
+/* BPD */
+
+.bpd{
+    margin-top:30px;
+}
+
+.bpd .kartu{
+    border-top-color:#9b7200;
+}
+
+.bpd .kartu h3{
+    color:#9b7200;
+}
+
+/* POPUP */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    z-index:9999;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.60);
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal-content{
+    background:white;
+
+    width:100%;
+    max-width:480px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+    animation:muncul .25s ease;
+}
+
+@keyframes muncul{
+
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.modal-icon{
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.modal-content h2{
+    color:#087443;
+    margin-bottom:20px;
+}
+
+/* BIODATA */
+
+.biodata{
+    background:#f2f7f4;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    text-align:left;
+
+    line-height:2;
+
+    margin-bottom:20px;
+}
+
+.biodata strong{
+    color:#087443;
+}
+
+/* TOMBOL */
+
+.tutup{
+    width:100%;
+
+    background:#087443;
+
+    color:white;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+.tutup:active{
+    transform:scale(.97);
+}
+
+/* QR */
+
+.qr{
+    background:white;
+
+    margin-top:40px;
+
+    padding:40px 20px;
+
+    text-align:center;
+}
+
+.qr h2{
+    color:#087443;
+
+    margin-bottom:10px;
+}
+
+#qrcode{
+    margin:25px auto;
+
+    width:200px;
+
+    min-height:200px;
+}
+
+.qr button{
+    background:#087443;
+
+    color:white;
+
+    border:none;
+
+    padding:13px 20px;
+
+    margin:5px;
+
+    border-radius:9px;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#075e37;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:40px;
+
+    line-height:1.8;
+}
+
+/* HP */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:25px;
+    }
+
+    .container{
+        width:94%;
+    }
+
+    .kartu{
+        max-width:100%;
+        padding:24px 15px;
+    }
+
+    .kelompok,
+    .dusun{
+        display:block;
+    }
+
+    .modal{
+        padding:12px;
+    }
+
+    .modal-content{
+        padding:20px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+<h1>🏛️ DESA ALEUTI</h1>
+
+<p>STRUKTUR PEMERINTAHAN DESA</p>
+
+</header>
+
+
+
+<div class="container">
+
+<h2 class="judul">
+Struktur Pemerintahan Desa Aleuti
+</h2>
+
+
+<!-- KEPALA DESA -->
+
+<button type="button" class="kartu" onclick="bukaBiodata(1)">
+
+<div class="icon">👨‍💼</div>
+
+<h3>KEPALA DESA</h3>
+
+<p>Nama Kepala Desa</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<div class="garis"></div>
+
+
+<!-- SEKRETARIS -->
+
+<button type="button" class="kartu" onclick="bukaBiodata(2)">
+
+<div class="icon">👨‍💼</div>
+
+<h3>SEKRETARIS DESA</h3>
+
+<p>Nama Sekretaris Desa</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<div class="garis"></div>
+
+
+<!-- KAUR -->
+
+<div class="kelompok">
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(3)">
+
+<div class="icon">📋</div>
+
+<h3>KAUR TATA USAHA & UMUM</h3>
+
+<p>Nama Perangkat</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(4)">
+
+<div class="icon">💰</div>
+
+<h3>KAUR KEUANGAN</h3>
+
+<p>Nama Perangkat</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(5)">
+
+<div class="icon">📊</div>
+
+<h3>KAUR PERENCANAAN</h3>
+
+<p>Nama Perangkat</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+</div>
+
+
+<div class="garis"></div>
+
+
+<!-- KASI -->
+
+<div class="kelompok">
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(6)">
+
+<div class="icon">🏛️</div>
+
+<h3>KASI PEMERINTAHAN</h3>
+
+<p>Nama Perangkat</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(7)">
+
+<div class="icon">🤝</div>
+
+<h3>KASI KESEJAHTERAAN</h3>
+
+<p>Nama Perangkat</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(8)">
+
+<div class="icon">🧑‍💼</div>
+
+<h3>KASI PELAYANAN</h3>
+
+<p>Nama Perangkat</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+</div>
+
+
+<div class="garis"></div>
+
+
+<!-- DUSUN -->
+
+<div class="dusun">
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(9)">
+
+<div class="icon">🏘️</div>
+
+<h3>KEPALA DUSUN I</h3>
+
+<p>Nama Kepala Dusun</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(10)">
+
+<div class="icon">🏘️</div>
+
+<h3>KEPALA DUSUN II</h3>
+
+<p>Nama Kepala Dusun</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+
+<button type="button" class="kartu" onclick="bukaBiodata(11)">
+
+<div class="icon">🏘️</div>
+
+<h3>KEPALA DUSUN III</h3>
+
+<p>Nama Kepala Dusun</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+</div>
+
+
+<!-- BPD -->
+
+<div class="bpd">
+
+<button type="button" class="kartu" onclick="bukaBiodata(12)">
+
+<div class="icon">🏛️</div>
+
+<h3>BADAN PERMUSYAWARATAN DESA</h3>
+
+<p>BPD Desa Aleuti</p>
+
+<span class="klik">
+👆 Tekan untuk melihat biodata
+</span>
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- POPUP -->
+
+<div id="modalBiodata" class="modal">
+
+<div class="modal-content">
+
+<div class="modal-icon" id="biodataIcon">
+👤
+</div>
+
+<h2 id="biodataJabatan">
+Informasi
+</h2>
+
+
+<div class="biodata">
+
+<div>
+<strong>Nama:</strong>
+<span id="biodataNama">-</span>
+</div>
+
+<div>
+<strong>Jabatan:</strong>
+<span id="biodataJabatanDetail">-</span>
+</div>
+
+<div>
+<strong>Tempat, Tanggal Lahir:</strong>
+<span id="biodataTTL">-</span>
+</div>
+
+<div>
+<strong>Jenis Kelamin:</strong>
+<span id="biodataJK">-</span>
+</div>
+
+<div>
+<strong>Agama:</strong>
+<span id="biodataAgama">-</span>
+</div>
+
+</div>
+
+
+<button class="tutup" onclick="tutupBiodata()">
+✕ TUTUP
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- QR CODE -->
+
+<section class="qr">
+
+<h2>
+📱 QR Code Desa Aleuti
+</h2>
+
+<p>
+Scan QR Code untuk membuka website Desa Aleuti
+</p>
+
+<div id="qrcode"></div>
+
+
+<button onclick="downloadQR()">
+⬇️ Simpan QR Code
+</button>
+
+
+<button onclick="bukaWebsite()">
+🌐 Buka Website
+</button>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+© 2026 Pemerintah Desa Aleuti
+</p>
+
+<p>
+Website Informasi Pemerintahan Desa
+</p>
+
+</footer>
+
+
+
+<!-- LIBRARY QR CODE -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<script>
+
+/* ALAMAT WEBSITE */
+
+const alamatWebsite =
+"https://yuningidris-netizen.github.io/desa-aleuti/";
+
+
+
+/* DATA BIODATA */
+
+const dataBiodata = {
+
+1:{
+nama:"Nama Kepala Desa",
+jabatan:"Kepala Desa",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"👨‍💼"
+},
+
+2:{
+nama:"Nama Sekretaris Desa",
+jabatan:"Sekretaris Desa",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"👨‍💼"
+},
+
+3:{
+nama:"Nama Perangkat",
+jabatan:"Kaur Tata Usaha & Umum",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"📋"
+},
+
+4:{
+nama:"Nama Perangkat",
+jabatan:"Kaur Keuangan",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"💰"
+},
+
+5:{
+nama:"Nama Perangkat",
+jabatan:"Kaur Perencanaan",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"📊"
+},
+
+6:{
+nama:"Nama Perangkat",
+jabatan:"Kasi Pemerintahan",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🏛️"
+},
+
+7:{
+nama:"Nama Perangkat",
+jabatan:"Kasi Kesejahteraan",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🤝"
+},
+
+8:{
+nama:"Nama Perangkat",
+jabatan:"Kasi Pelayanan",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🧑‍💼"
+},
+
+9:{
+nama:"Nama Kepala Dusun",
+jabatan:"Kepala Dusun I",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🏘️"
+},
+
+10:{
+nama:"Nama Kepala Dusun",
+jabatan:"Kepala Dusun II",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🏘️"
+},
+
+11:{
+nama:"Nama Kepala Dusun",
+jabatan:"Kepala Dusun III",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🏘️"
+},
+
+12:{
+nama:"Nama Anggota/Ketua BPD",
+jabatan:"Badan Permusyawaratan Desa",
+ttl:"-",
+jk:"-",
+agama:"-",
+icon:"🏛️"
+}
+
+};
+
+
+
+/* BUKA BIODATA */
+
+function bukaBiodata(id){
+
+const data=dataBiodata[id];
+
+document.getElementById("biodataIcon").innerText=data.icon;
+
+document.getElementById("biodataJabatan").innerText=
+"Informasi "+data.jabatan;
+
+document.getElementById("biodataNama").innerText=
+data.nama;
+
+document.getElementById("biodataJabatanDetail").innerText=
+data.jabatan;
+
+document.getElementById("biodataTTL").innerText=
+data.ttl;
+
+document.getElementById("biodataJK").innerText=
+data.jk;
+
+document.getElementById("biodataAgama").innerText=
+data.agama;
+
+document.getElementById("modalBiodata").style.display=
+"flex";
+
+}
+
+
+
+/* TUTUP BIODATA */
+
+function tutupBiodata(){
+
+document.getElementById("modalBiodata").style.display=
+"none";
+
+}
+
+
+
+/* KLIK DI LUAR POPUP */
+
+document.getElementById("modalBiodata").addEventListener(
+"click",
+function(event){
+
+if(event.target===this){
+
+tutupBiodata();
+
+}
+
+}
+);
+
+
+
+/* ESC */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Escape"){
+
+tutupBiodata();
+
+}
+
+}
+);
+
+
+
+/* QR CODE */
+
+if(typeof QRCode!=="undefined"){
+
+new QRCode(
+document.getElementById("qrcode"),
+{
+text:alamatWebsite,
+width:200,
+height:200,
+correctLevel:QRCode.CorrectLevel.H
+}
+);
+
+}else{
+
+document.getElementById("qrcode").innerHTML=
+"<p style='color:red;'>QR Code gagal dimuat.</p>";
+
+}
+
+
+
+/* BUKA WEBSITE */
+
+function bukaWebsite(){
+
+window.open(
+alamatWebsite,
+"_blank"
+);
+
+}
+
+
+
+/* DOWNLOAD QR */
+
+function downloadQR(){
+
+const gambar=
+document.querySelector("#qrcode img");
+
+if(!gambar){
+
+alert(
+"QR Code belum tersedia. Silakan refresh halaman."
+);
+
+return;
+
+}
+
+const link=
+document.createElement("a");
+
+link.href=gambar.src;
+
+link.download=
+"QR-Code-Desa-Aleuti.png";
+
+link.click();
+
+}
+
+</script>
+
+</body>
+</html>
